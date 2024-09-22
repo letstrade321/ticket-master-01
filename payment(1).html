@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            margin: auto;
+            width: 60%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 1.2em;
+            color: #666;
+        }
+        .timer {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: red;
+            margin-top: 10px;
+        }
+        .payment-options {
+            margin-top: 20px;
+        }
+        .payment-options img {
+            width: 200px;
+            height: 200px;
+        }
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 20px;
+        }
+        .failed {
+            display: none;
+            color: red;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Complete Your Payment</h1>
+        <p>Scan the UPI code or use the USDT-TRC20 address to complete your payment.</p>
+
+        <div class="payment-options">
+            <div>
+                <h3>UPI Payment</h3>
+                <img src="https://assets.onecompiler.app/42sx2a5h4/42sx2ae43/b44a0676-eb24-4c34-8ea8-3687ee862a02.jpeg" alt="UPI QR Code">
+            </div>
+
+            <div>
+                <h3>USDT (TRC20)</h3>
+                <p>Address: TXoEiGtu2D7ukcZCvMaWKGJf9sTrtxUTYN</p>
+            </div>
+        </div>
+
+        <p class="timer">Time Remaining: <span id="timer">300</span> seconds</p>
+
+        <p class="note">After payment, your tickets will be mailed to the provided email address.</p>
+        <p class="note">Please check your spam folder for the email if not received.</p>
+
+        <p class="failed" id="failed-message">Transaction Failed! Please try again.</p>
+    </div>
+
+    <script>
+        let timeLeft = 300;
+        const timer = document.getElementById('timer');
+        const failedMessage = document.getElementById('failed-message');
+
+        const countdown = setInterval(function() {
+            timeLeft--;
+            timer.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(countdown);
+                failedMessage.style.display = 'block';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

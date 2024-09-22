@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coldplay Ticket Booking - 19th Jan 2025</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            margin: auto;
+            width: 60%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        #price {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .note {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .buy-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .buy-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Coldplay Ticket Booking - 19th Jan 2025</h1>
+
+        <label for="ticket">Select Ticket Type</label>
+        <select id="ticket" onchange="calculatePrice()">
+            <option value="" disabled selected>Select a ticket</option>
+            <option value="49999">LOUNGE Access - ₹49999</option>
+            <option value="soldout" disabled>BLOCK D - SOLD OUT</option>
+            <option value="soldout" disabled>BLOCK E - SOLD OUT</option>
+            <option value="21000">BLOCK A - ₹21000</option>
+        </select>
+
+        <label for="quantity">Select Number of Tickets</label>
+        <select id="quantity" onchange="calculatePrice()">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
+        <p id="price">Total Price: ₹0</p>
+
+        <label for="email">Enter Email Address</label>
+        <input type="email" id="email" placeholder="Your email address" required>
+
+        <label for="name">Enter Your Name</label>
+        <input type="text" id="name" placeholder="Your name" required>
+
+        <p class="note">Note: Tickets will be mailed to the provided email address. Please check your spam folder after payment.</p>
+        <p class="note">For support, contact: <a href="mailto:support.blacklive@ticketmaster.com">support.blacklive@ticketmaster.com</a></p>
+        <p class="note">Tickets are sourced from BookMyShow. Print your tickets for convenience.</p>
+        <p class="note">We accept USDT-TRC20 and UPI.</p>
+
+        <button class="buy-btn" onclick="goToPayment()">Buy Now</button>
+    </div>
+
+    <script>
+        function calculatePrice() {
+            const ticketPrice = document.getElementById('ticket').value;
+            const quantity = document.getElementById('quantity').value;
+            if (ticketPrice && quantity) {
+                const totalPrice = ticketPrice * quantity;
+                document.getElementById('price').innerText = 'Total Price: ₹' + totalPrice;
+            }
+        }
+
+        function goToPayment() {
+            const ticketType = document.getElementById('ticket').value;
+            if (!ticketType || ticketType === 'soldout') {
+                alert("Please select a valid ticket type.");
+                return;
+            }
+
+            const email = document.getElementById('email').value;
+            const name = document.getElementById('name').value;
+            if (!email || !name) {
+                alert("Please provide your email and name.");
+                return;
+            }
+
+            window.location.href = "payment.html";
+        }
+    </script>
+</body>
+</html>
